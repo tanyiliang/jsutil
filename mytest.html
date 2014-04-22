@@ -19,12 +19,13 @@
 
 
       // async.series([
-      //     function(callback){
+      //     function(callback,results){
       //         setTimeout(function(){
+      //             console.log(1+"-->"+JSON.stringify(results));
       //             callback(null, 'one');
       //         }, 200);
       //     },
-      //     function(callback,param,results){
+      //     function(callback,results){
       //         setTimeout(function(){
       //             console.log(2+"-->"+JSON.stringify(results));
       //             callback(null, 'two');
@@ -37,12 +38,13 @@
 
 
       // async.series({
-      //     one:function(callback){
+      //     one:function(callback,results){
       //         setTimeout(function(){
+      //             console.log(3+"-->"+JSON.stringify(results));
       //             callback(null, 'three');
       //         }, 200);
       //     },
-      //     two:function(callback,param,results){
+      //     two:function(callback,results){
       //         setTimeout(function(){
       //             console.log(4+"-->"+JSON.stringify(results));
       //             callback(null, 'four');
@@ -55,13 +57,13 @@
 
 
       // async.parallel([
-      //     function(callback,param,results){
+      //     function(callback,results){
       //         setTimeout(function(){
       //             console.log(1+"-->"+JSON.stringify(results));
       //             callback(null, 'one');
       //         }, 200);
       //     },
-      //     function(callback,param,results){
+      //     function(callback,results){
       //         setTimeout(function(){
       //             console.log(2+"-->"+JSON.stringify(results));
       //             callback(null, 'two');
@@ -74,13 +76,13 @@
 
 
       // async.parallel({
-      //     one:function(callback,param,results){
+      //     one:function(callback,results){
       //         setTimeout(function(){
       //             console.log(3+"-->"+JSON.stringify(results));
       //             callback(null, 'three');
       //         }, 200);
       //     },
-      //     two:function(callback,param,results){
+      //     two:function(callback,results){
       //         setTimeout(function(){
       //             console.log(4+"-->"+JSON.stringify(results));
       //             callback(null, 'four');
@@ -92,10 +94,13 @@
       // });
 
 
+
       async.parallel({
-          one:function(callback){
-                console.log(11111);
-                callback(null, "aaaaaaa");
+          one:function(callback,results){
+              setTimeout(function(){
+                console.log(1+"-->"+JSON.stringify(results));
+                callback(null, 'one');
+              }, 200);
           },
           two:function(callback,results){
               setTimeout(function(){
