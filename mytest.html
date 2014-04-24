@@ -110,7 +110,7 @@
           }
       },
       function(err, results){
-          console.log(results);
+          console.log("parallel over and series start :"+JSON.stringify(results));
           async.series({
             three:function(callback){//第一个直接用results
                 console.log(3+"-->"+JSON.stringify(results));

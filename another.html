@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>Test</title>
+    <!--
+      async must be included after nodeunit because nodeunit already uses
+      the async lib internally and will overwrite the version we want to test
+    -->
+
+    <script>
+
+    </script>
+    <script src="another.js"></script>
+  </head>
+  <body>
+
+    abc....
+    <script>
+      //不知道用户的任务什么时候执行完，约定执行完会执行下注入的回调函数，把值带过来
+
+      var func1 = function(callback,results){
+          setTimeout(function(){
+              console.log(1+"-->"+JSON.stringify(results));
+              callback(null, 'one');
+          }, 200);
+      };
+      var func2 = function(callback,results){
+          setTimeout(function(){
+              console.log(2+"-->"+JSON.stringify(results));
+              callback(null, 'two');
+          }, 100);
+      };
+      var func3 = function(callback,results){
+          setTimeout(function(){
+              console.log(3+"-->"+JSON.stringify(results));
+              callback(null, 'three');
+          }, 300);
+      };
+      var func4 = function(callback,results){
+          setTimeout(function(){
+              console.log(4+"-->"+JSON.stringify(results));
+              callback(null, 'four');
+          }, 50);
+      };
+      var callback = function(err, results){
+          console.log(results);
+      };
+      var tasks = [[func3,func4],func1,func2];
+
+      async.all(tasks,callback);
+
+
+    </script>
+  </body>
+</html>
