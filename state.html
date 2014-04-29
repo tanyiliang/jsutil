@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <title>Test</title>
+    <!--
+      async must be included after nodeunit because nodeunit already uses
+      the async lib internally and will overwrite the version we want to test
+    -->
+
+    <script>
+
+    </script>
+    <script src="state.js"></script>
+
+  </head>
+  <body>
+
+    abc....
+    <script>
+
+      var func1 = function(callback){
+          setTimeout(function(){
+              console.log(1+"-->");
+              callback(null, 3);
+          }, 200);
+      };
+      var func2 = function(callback){
+          setTimeout(function(){
+              console.log(2+"-->");
+              callback(null, 5);
+          }, 100);
+      };
+      var func3 = function(callback){
+          setTimeout(function(){
+              console.log(3+"-->");
+              callback(null, 4);
+          }, 300);
+      };
+      var func4 = function(callback){
+          setTimeout(function(){
+              console.log(4+"-->");
+              callback(null, 2);
+          }, 50);
+      };
+
+      setTimeout(function(){
+          myQueue.push(func1,function(isSucc,rs){
+            console.log("1 res back to front!!!"+rs);
+          })
+      }, 100);
+      setTimeout(function(){
+          myQueue.push(func2,function(isSucc,rs){
+            console.log("2 res back to front!!!"+rs);
+          })
+      }, 200);
+      setTimeout(function(){
+          myQueue.push(func3,function(isSucc,rs){
+            console.log("3 res back to front!!!"+rs);
+          })
+      }, 300);
+      setTimeout(function(){
+          myQueue.push(func4,function(isSucc,rs){
+            console.log("4 res back to front!!!"+rs);
+          })
+      }, 400);
+
+    var myQueue = new Queue();
+    var total = 7;
+    myQueue.validFunc=function(rs,cb){
+        if(rs == null) {//初始化
+          if(total < 0)
+            return [false,'订购失败,已卖完'];
+          else
+            return [true];
+        }else{
+            if(total>=rs){
+                total = total - rs;
+                return [true,'订购成功'+rs];
+            }else{
+                return [false,'订购失败,超过订购数量!还剩'+total];
+            }
+        }
+    }
+
+    </script>
+  </body>
+</html>

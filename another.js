@@ -73,7 +73,7 @@ async._tasks = function(tasks, callback, param ,async , finalRs) {
         fn(function(isSucc,result) {//框架注入的回调函数,如果用户不执行回调，链式将会断掉，无法返回
             results[key] = result;//注入的回调函数第一个属性是成功标识，返回false会直接执行最终回调返回，第二个参数是用户设置的值
             if (isSucc === false) {
-                callback(isSucc,results);//这里的result在isSucc为false的时候表示错误信息
+                callback(isSucc,result);//这里的result在isSucc为false的时候表示错误信息
                 callback = function() {};
             } else {
                 completed += 1;
@@ -121,7 +121,7 @@ async.all = function(tasks, callback ,param) {
             finalRs[completed] = result;
         }
         if (isSucc === false) {
-            callback(isSucc,finalRs);//这里的result在isSucc为false的时候表示错误信息
+            callback(isSucc,finalRs[completed]);//这里的result在isSucc为false的时候表示错误信息
             callback = function() {};
         }else{
             completed += 1;

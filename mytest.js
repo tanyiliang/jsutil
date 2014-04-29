@@ -76,7 +76,7 @@ async._tasks = function(tasks, callback, param ,async) {
             }
             results[key] = args;
             if (isSucc === false) {
-                callback(isSucc,results);//这里的result在isSucc为false的时候表示错误信息
+                callback(isSucc,args);//这里的args在isSucc为false的时候表示错误信息
                 callback = function() {};
             } else {
                 completed += 1;
