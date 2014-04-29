@@ -21,7 +21,7 @@
           setTimeout(function(){
               console.log(1+"-->");
               callback(null, 3);
-          }, 200);
+          }, 50);
       };
       var func2 = function(callback){
           setTimeout(function(){
@@ -33,7 +33,7 @@
           setTimeout(function(){
               console.log(3+"-->");
               callback(null, 4);
-          }, 300);
+          }, 30);
       };
       var func4 = function(callback){
           setTimeout(function(){
@@ -56,7 +56,7 @@
           myQueue.push(func3,function(isSucc,rs){
             console.log("3 res back to front!!!"+rs);
           })
-      }, 300);
+      }, 220);
       setTimeout(function(){
           myQueue.push(func4,function(isSucc,rs){
             console.log("4 res back to front!!!"+rs);

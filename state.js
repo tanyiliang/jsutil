@@ -11,6 +11,7 @@ Queue.prototype.push= function(task,callBack){
     this.callBackList.push(callBack);
     if(this.taskList.length>0 &&!this.tasking){
         this.dotask();
+        console.log("start...");
         this.tasking = true;
     }
 }
@@ -20,6 +21,7 @@ Queue.prototype.shift= function(){
     this.callBackList.shift();
     if(this.taskList.length===0 &&this.tasking){
         this.tasking = false;
+        console.log("end...");
     }
 }
 
