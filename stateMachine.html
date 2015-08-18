@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <title>Test</title>
+
+    <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="stateMachine.js"></script>
+
+    <style type="text/css" media="screen">
+      #con1,#con2 {display: none;}
+      #con1.active,#con2.active {display: block;}  
+    </style>
+
+
+  </head>
+  <body>
+    <div>
+      <div>
+        <label id="con1" class="active"><input type="text" name="" value="con1"></label>
+      </div>
+
+      <div>
+        <label id="con2"><input type="text" name="" value="con2"></label>
+      </div>
+    </div>
+
+    <script>
+      var con1 = {
+        activate:function(){
+          $("#con1").addClass("active");
+        },
+        deactivate:function(){
+          $("#con1").removeClass("active");
+        }
+      };
+      var con2 = {
+        activate:function(){
+          $("#con2").addClass("active");
+        },
+        deactivate:function(){
+          $("#con2").removeClass("active");
+        }
+      };
+
+      var sm = new StateMachine();
+      sm.add(con1);
+      sm.add(con2);
+      console.log("active con2:");
+      con2.active();
+    </script>
+    
+  </body>
+</html>
